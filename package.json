@@ -9,8 +9,10 @@
     "css-tree": "^1.1.2",
     "cssom": "^0.4.4",
     "json-stringify-safe": "^5.0.1",
+    "jsonata": "^1.8.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-json-view": "^1.21.1",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
   },

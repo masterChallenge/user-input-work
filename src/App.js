@@ -1,60 +1,49 @@
-import React, {useRef, useEffect, useState} from 'react'
+import React, {useRef, useState} from 'react'
 import './App.css'
 
-import * as csstree from 'css-tree'
-import * as cssom from 'cssom'
+import ReactJson from 'react-json-view'
 
-import stringify from 'json-stringify-safe'
+import imgsrc from './images/test'
 
-function App() {
+import data_challenge from './json/challenge'
+import jsonata from 'jsonata'
 
-  // const [cssInputTest, setCssInputTest] = useState(`
-  // body {
-  //   background: #eee;
-  //   color: #888;
-  // }
-  // `)
+import { validate } from './validator/mco-validator'
 
-  const [cssInputTest, setCssInputTest] = useState(`
-  <style>  
-body {
-    background: #eee;
-    color: #888;
-  }
+const initialCSS = `
+
+    .divLayout {
+      width: 500px;
+      height: 500px;
+    }
+
+    .divHola {
+      background-color: cyan;
+      width: 50px;
+      height: 50px;
+    }
+    `
+
+const initialHTML = `
   
- .clase2 {
-    background: #FF00FF;
-    color: #888;
-  }
-  
-</style>
-<div class='clase2'>
-text de prueba
-</div>
-  `)
-  const userInput = useRef()
-  
-  const getInput = function() {
-    const datos = userInput.current.value.trim();
+  <div class='divLayout'>
+    <div class="divHola">
+      Hola
+    </div>
+  </div>    
     
-    const ast = csstree.parse(datos, {
-        positions: true,
-        tolerant: true
-    })
-    console.log(csstree.toPlainObject(ast))
-    //console.log(JSON.stringify(csstree.toPlainObject(ast)))
+`
 
-    const astcssom = cssom.parse(datos)
-    console.log(astcssom)
-  }
+function App() {  
+
+  const [cssInputTest, setCssInputTest] = useState(initialCSS)
+  const [ASTjson, setASTjson] = useState({})
+  const userInput = useRef()
 
   function createMarkup() {
-    return {__html: cssInputTest};
-  }
-
-  useEffect(() => {
-
-  })
+    const data = `<style> ${cssInputTest} </style> ${initialHTML}`
+    return {__html: data};
+  }  
 
   return (
     <div className="App">
@@ -62,26 +51,50 @@ text de prueba
         Hello Nav
       </div>
       <div className="description">
-        Description
-        <button onClick={() => getInput()}>Parse</button>
-        <button>Validate</button>
+        <div style={{ margin: '15px'}}>
+          Utiliza la propiedad backgroud-color en la clase 
+          divHola para cambiar su color de fondo a rojo
+        </div>
+        
+        <button onClick={() => { 
+          console.log(validate(userInput.current.value.trim(), 
+            data_challenge.challenge.validatorRules))
+        }}>Validate</button>
       </div>
       <div>Editor</div>
       <div>Parser</div>
       <div>Box1</div>
       <div>Box2</div>
-      <textarea 
-        ref={userInput} 
-        value={cssInputTest}
-        onChange={value => setCssInputTest(value.target.value)}
-        style={{width:'250px', height:'500px'}}
-        >
+      <div>
+        <div>
+          <textarea 
+          ref={userInput} 
+          value={cssInputTest}
+          onChange={value => setCssInputTest(value.target.value)}
+          style={{width:'250px', height:'250px'}}
+          >
 
-        </textarea>
-      <div></div>
-      <div style={{ width: '500px', height: '200px'}} dangerouslySetInnerHTML={createMarkup()}></div>
-      <div></div>
-      <div></div>
+          </textarea>
+        </div>
+        <div>
+          <textarea 
+            value={initialHTML}
+            style={{width:'250px', height:'250px'}}
+            disabled
+            >
+              
+            </textarea>
+        </div>
+      </div>
+      
+      
+      <div style={{ width: '500px', height: '200px'}}>
+        <ReactJson src={ASTjson} />
+      </div>
+      <div style={{ margin: '5px', background: 'gray', width: '500px', height: '500px'}} dangerouslySetInnerHTML={createMarkup()}></div>
+      <div style={{ margin: '5px'}}>
+        <img src={imgsrc} alt='Resultado esperado'/>
+      </div>
     </div>
   );
 }
