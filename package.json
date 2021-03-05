@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "css-tree": "^1.1.2",
     "cssom": "^0.4.4",
+    "js-beautify": "^1.13.5",
     "json-stringify-safe": "^5.0.1",
     "jsonata": "^1.8.4",
     "react": "^17.0.1",

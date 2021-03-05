@@ -5,34 +5,16 @@ import ReactJson from 'react-json-view'
 
 import imgsrc from './images/test'
 
-import data_challenge from './json/challenge_layout_flex_center_center'
+import data_challenge from './json/challenge_layout_flex_center'
 import jsonata from 'jsonata'
+
+import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
 
 import { validate } from './validator/mco-validator'
 
-const initialCSS = `
+const initialCSS = css_beautify(data_challenge.challenge.editor_data[1].value)
 
-    .divLayout {
-      width: 500px;
-      height: 500px;
-    }
-
-    .divHola {
-      background-color: cyan;
-      width: 50px;
-      height: 50px;
-    }
-    `
-
-const initialHTML = `
-  
-  <div class='divLayout'>
-    <div class="divHola">
-      Hola
-    </div>
-  </div>    
-    
-`
+const initialHTML = html_beautify(data_challenge.challenge.editor_data[0].value)
 
 function App() {  
 
@@ -84,7 +66,7 @@ function App() {
           <textarea 
             value={initialHTML}
             style={{width:'250px', height:'250px'}}
-            disabled
+            
             >
               
             </textarea>

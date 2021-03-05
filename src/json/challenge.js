@@ -50,7 +50,7 @@ const challenge_data = {
       },
       {
         language: "css",
-        value: ".divHola { background-color: cyan; width: 50px; height: 50px; }"
+        value: ".divLayout { width: 500px; height: 500px; } .divHola { background-color: cyan; width: 50px; height: 50px;}"
       },
       {
         language: "js",
