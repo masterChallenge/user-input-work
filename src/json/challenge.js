@@ -43,11 +43,20 @@ const challenge_data = {
         rule: "(cssRules[selectorText='.divHola'].style.'background-color' = 'red')"
       }
     ],
-    editor_data: {
-      html: "<div class='divLayout'><div class='divHola'>Hola</div></div>",
-      css: ".divHola { background-color: cyan; width: 50px; height: 50px; }",
-      js: ""
-    },
+    editor_data: [
+      {
+        language: "html",
+        value: "<div class='divLayout'><div class='divHola'>Hola</div></div>"
+      },
+      {
+        language: "css",
+        value: ".divHola { background-color: cyan; width: 50px; height: 50px; }"
+      },
+      {
+        language: "js",
+        value: ""
+      }
+    ],
     hints: [
       {
         id: 1,
