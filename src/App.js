@@ -5,7 +5,7 @@ import ReactJson from 'react-json-view'
 
 import imgsrc from './images/test'
 
-import data_challenge from './json/challenge'
+import data_challenge from './json/challenge_layout_flex_center_center'
 import jsonata from 'jsonata'
 
 import { validate } from './validator/mco-validator'
@@ -39,6 +39,8 @@ function App() {
   const [cssInputTest, setCssInputTest] = useState(initialCSS)
   const [ASTjson, setASTjson] = useState({})
   const userInput = useRef()
+  
+  const [validatorResult, setValidatorResult] = useState({})
 
   function createMarkup() {
     const data = `<style> ${cssInputTest} </style> ${initialHTML}`
@@ -52,17 +54,19 @@ function App() {
       </div>
       <div className="description">
         <div style={{ margin: '15px'}}>
-          Utiliza la propiedad backgroud-color en la clase 
-          divHola para cambiar su color de fondo a rojo
+          {data_challenge.description} 
+          
         </div>
         
         <button onClick={() => { 
           console.log(validate(userInput.current.value.trim(), 
             data_challenge.challenge.validatorRules))
+          setValidatorResult(validate(userInput.current.value.trim(), 
+            data_challenge.challenge.validatorRules))
         }}>Validate</button>
       </div>
       <div>Editor</div>
-      <div>Parser</div>
+      <div>Result</div>
       <div>Box1</div>
       <div>Box2</div>
       <div>
@@ -89,11 +93,11 @@ function App() {
       
       
       <div style={{ width: '500px', height: '200px'}}>
-        <ReactJson src={ASTjson} />
+        <ReactJson src={validatorResult} />
       </div>
       <div style={{ margin: '5px', background: 'gray', width: '500px', height: '500px'}} dangerouslySetInnerHTML={createMarkup()}></div>
       <div style={{ margin: '5px'}}>
-        <img src={imgsrc} alt='Resultado esperado'/>
+        <img src={data_challenge.challenge.image} alt='Resultado esperado'/>
       </div>
     </div>
   );
