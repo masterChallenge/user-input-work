@@ -1,6 +1,6 @@
 ## ⚠⚠⚠⚠⚠ This repository is deprecated ⚠⚠⚠⚠⚠
 
-We use this repository to mantain part of the validator prototype that was then integrated with the main application
+We use this repository to mantain part of the input validator prototype that was then integrated with the main application, you can see the integration in this [repo](https://github.com/masterChallenge/master-challenge-frontend)
 
 # Getting Started with Create React App
 
