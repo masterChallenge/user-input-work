@@ -1,3 +1,7 @@
+## ⚠⚠⚠⚠⚠ This repository is deprecated ⚠⚠⚠⚠⚠
+
+We use this repository to mantain part of the validator prototype that was then integrated with the main application
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
